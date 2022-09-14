@@ -1,27 +1,24 @@
 import { Model, Column, Table } from "sequelize-typescript";
 
 @Table({
-  tableName: "tipos_usuario",
-  underscored: true,
+  tableName: "salon_estatus",
   timestamps: true,
-  createdAt: false,
+  underscored: true,
+  createdAt: "created_at",
   updatedAt: false,
   deletedAt: false,
 })
-export class TiposUsuario extends Model {
+export class SalonEstatus extends Model {
   @Column({
-    field: "id_tipos_usuario",
+    field: "id_salon_estatus",
     primaryKey: true,
     autoIncrement: true,
     allowNull: true,
   })
-  id_tipos_usuario: number;
+  id_salon_estatus?: number;
 
   @Column({ allowNull: false })
-  tipo_usuario: string;
-
-  @Column({ allowNull: true })
-  descripcion_tipo_usuario: string;
+  nombre_estatus: string;
 
   @Column({ allowNull: false })
   active?: number;
