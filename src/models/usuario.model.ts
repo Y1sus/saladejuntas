@@ -40,10 +40,10 @@ export class Usuario extends Model {
   tipos_usuario?: TiposUsuario;
 
   @Column({ allowNull: false })
-  email?: string;
+  email: string;
 
   @Column({ allowNull: false })
-  password?: string;
+  password: string;
 
   @Column({ allowNull: false })
   active?: number;

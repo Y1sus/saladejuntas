@@ -5,6 +5,8 @@ import { Http2Server } from "http2";
 
 import usuariosRoute from "../routes/usuarios.route";
 import loginRoute from "../routes/login.route";
+import salonRoute from "../routes/salon.route";
+import reservacionRoute from "../routes/reservacion.route";
 
 export default class Server {
   public app: express.Application;
@@ -58,6 +60,8 @@ export default class Server {
 
     this.app.use("/api/usuarios", usuariosRoute);
     this.app.use("/api/login", loginRoute);
+    this.app.use("/api/salon", salonRoute);
+    this.app.use("/api/reservacion", reservacionRoute);
 
     // this.app.use('/empresas', validateToken, routeEmpresa);
     // this.app.use('/mesas', validateToken, routeMesa);

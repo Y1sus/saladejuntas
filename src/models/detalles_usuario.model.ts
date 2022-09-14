@@ -18,16 +18,16 @@ export class DetallesUsuario extends Model {
   id_detalles_usuario?: number;
 
   @Column({ allowNull: false })
-  nombre?: string;
+  nombre: string;
 
   @Column({ allowNull: false })
-  apellidos?: string;
+  apellidos: string;
 
   @Column({ allowNull: false })
-  domicilio?: string;
+  domicilio: string;
 
   @Column({ allowNull: false })
-  telefono?: string;
+  telefono: string;
 
   @Column({ allowNull: false })
   edad?: number;

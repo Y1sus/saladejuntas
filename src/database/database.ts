@@ -3,6 +3,9 @@ import { DetallesUsuario } from "../models/detalles_usuario.model";
 import { TiposUsuario } from "../models/tipos_usuario.model";
 import { Usuario } from "../models/usuario.model";
 import { config } from "../config/config";
+import { Salon } from "../models/salon.model";
+import { Reservacion } from "../models/reservacion.model";
+import { SalonEstatus } from "../models/salon_estatus.model";
 
 class DataBase {
   private _sequelize: Sequelize;
@@ -19,7 +22,7 @@ class DataBase {
           min: 0,
           idle: 10000,
         },
-        logging: false ,
+        logging: false,
         repositoryMode: true,
       }
     );
@@ -27,7 +30,10 @@ class DataBase {
     this._sequelize.addModels([
       Usuario,
       TiposUsuario,
-      DetallesUsuario
+      DetallesUsuario,
+      Salon,
+      SalonEstatus,
+      Reservacion,
     ]);
   }
   public getSequelize() {
