@@ -20,7 +20,29 @@ export class SalonController {
 
     if (salones.length > 0)
       return res.status(200).json({ status: 200, data: salones });
-    return res.status(200).json({ msj: "No hay salones actualmente" });
+    return res.status(204).json({ msj: "No hay salones actualmente" });
+  }
+
+  async obtenerSalonesDisponibles(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    const salones = await salonRepo.findAll({
+      where: {
+        active: 1,
+        id_salon_estatus: 1,
+      },
+      include: {
+        model: salonEstatusRepo,
+        attributes: ["id_salon_estatus", "nombre_estatus"],
+      },
+    });
+
+    if (salones.length > 0)
+      return res.status(200).json({ status: 200, data: salones });
+    return res
+      .status(204)
+      .json({ status: 204, msj: "No hay salones actualmente" });
   }
 
   async obtenerSalonPorId(req: Request, res: Response) {
@@ -37,7 +59,7 @@ export class SalonController {
     });
 
     if (salon) return res.status(200).json({ status: 200, data: salon });
-    else return res.status(200).json({ msj: "No hay salones" });
+    else return res.status(204).json({ msj: "No hay salones" });
   }
 
   async agregarSalon(req: Request, res: Response) {

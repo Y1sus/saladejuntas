@@ -30,11 +30,7 @@ export class Login {
         password: hashPassword,
         active: 1,
       },
-      attributes: [
-        "id_usuario",
-        "email",
-        "created_at",
-      ],
+      attributes: ["id_usuario", "email", "created_at"],
       include: [
         {
           model: detallesUsuarioRepo,
@@ -56,7 +52,10 @@ export class Login {
     if (!usuario)
       return res.status(201).json({ msj: "No se encuentra el usuario" });
 
-    const token = jwt.sign({ usuario }, "secret", { expiresIn: "5h" });
+    const token = jwt.sign({ usuario }, "8n&K9bHr3n7vWyBki5", {
+      expiresIn: "5h",
+    });
+    console.log(usuario);
     return res.status(200).json({ data: usuario, token });
   }
 }

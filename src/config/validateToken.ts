@@ -6,7 +6,7 @@ export function validateToken(req: any, res: any, next: any) {
       const bearer = bearerHeader.split(' ');
       const bearerToken = bearer[1];
       // console.log(jwt.decode(bearerToken));
-      jwt.verify(bearerToken, 'mysecret', (err: any, data: any) => {
+      jwt.verify(bearerToken, '8n&K9bHr3n7vWyBki5', (err: any, data: any) => {
          if (err) {
             res.status(403).json({ msg: 'No está autorizado para esta operación' });
          } else {
@@ -14,7 +14,7 @@ export function validateToken(req: any, res: any, next: any) {
          }
       })
    } else {
-      res.status(404).json({ msg: 'A ocurrido un error en la autenticacion' });
+      res.status(403).json({ msg: 'A ocurrido un error en la autenticación' });
    }
 }
 

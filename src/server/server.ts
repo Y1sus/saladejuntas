@@ -7,6 +7,7 @@ import usuariosRoute from "../routes/usuarios.route";
 import loginRoute from "../routes/login.route";
 import salonRoute from "../routes/salon.route";
 import reservacionRoute from "../routes/reservacion.route";
+import { validateToken } from "../config/validateToken";
 
 export default class Server {
   public app: express.Application;
@@ -47,21 +48,20 @@ export default class Server {
     );
     this.app.use(json());
     this.app.use(
-      cors()
-      // {
-      //   origin: 'http://localhost:3000',
-      //   optionsSuccessStatus: 200
-      // }
+      cors({
+        origin: "http://localhost:3000",
+        optionsSuccessStatus: 200,
+      })
     );
     this.server = this.app.listen(this.app.get("port"), await callback());
     this.app.get("/", (req, res) => {
       res.send("<h1 style='text-align:center'>Hola mundo</h1>");
     });
 
-    this.app.use("/api/usuarios", usuariosRoute);
+    this.app.use("/api/usuarios", validateToken, usuariosRoute);
     this.app.use("/api/login", loginRoute);
-    this.app.use("/api/salon", salonRoute);
-    this.app.use("/api/reservacion", reservacionRoute);
+    this.app.use("/api/salon", validateToken, salonRoute);
+    this.app.use("/api/reservacion", validateToken, reservacionRoute);
 
     // this.app.use('/empresas', validateToken, routeEmpresa);
     // this.app.use('/mesas', validateToken, routeMesa);
