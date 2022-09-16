@@ -18,7 +18,7 @@ export class ReservacionController {
       where: {
         active: 1,
       },
-      attributes: ["id_reservacion", "fecha", "active"],
+      attributes: ["id_reservacion", "hora_inicial", "hora_final", "active"],
       include: [
         {
           model: salonRepo,
@@ -61,7 +61,7 @@ export class ReservacionController {
         id_reservacion,
         active: 1,
       },
-      attributes: ["id_reservacion", "fecha", "active"],
+      attributes: ["id_reservacion", "hora_inicial", "hora_final", "active"],
       include: [
         {
           model: salonRepo,
@@ -92,7 +92,8 @@ export class ReservacionController {
   }
 
   async crearReservacion(req: Request, res: Response) {
-    const { id_usuario, id_salon, fecha } = req.body;
+    console.log(req.body);
+    const { id_usuario, id_salon, hora_inicial, hora_final } = req.body;
     const salon = await salonRepo.findOne({
       where: {
         id_salon,
@@ -104,7 +105,8 @@ export class ReservacionController {
         .create({
           id_usuario,
           id_salon,
-          fecha,
+          hora_inicial,
+          hora_final,
           active: 1,
         })
         .then(async (reservacionCreada) => {

@@ -40,7 +40,10 @@ export class Reservacion extends Model {
   salon?: Salon;
 
   @Column({ allowNull: false })
-  fecha?: Date;
+  hora_inicial?: string;
+
+  @Column({ allowNull: false })
+  hora_final?: string;
 
   @Column({ allowNull: false })
   active?: number;

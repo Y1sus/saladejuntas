@@ -7,6 +7,7 @@ const salon = new SalonController();
 const router = Router();
 
 router.get("/", salon.obtenerSalones);
+router.get("/disponibles", salon.obtenerSalonesDisponibles);
 router.get("/:id_salon", salon.obtenerSalonPorId);
 router.post("/agregar", salon.agregarSalon);
 router.post("/eliminar", salon.eliminarSalon);
