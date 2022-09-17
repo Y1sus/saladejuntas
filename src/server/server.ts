@@ -8,6 +8,7 @@ import loginRoute from "../routes/login.route";
 import salonRoute from "../routes/salon.route";
 import reservacionRoute from "../routes/reservacion.route";
 import { validateToken } from "../config/validateToken";
+import logPeticiones from "../models/logs.model";
 
 export default class Server {
   public app: express.Application;
@@ -39,9 +40,9 @@ export default class Server {
           response["statusMessage"] = res.statusMessage;
           response["originalUrl"] = req.originalUrl;
 
-          //   const logs = new logPeticiones(req.headers);
-          console.log(response);
-          // logs.save();
+          const logs = new logPeticiones(response);
+          // console.log(response);
+          logs.save();
           return res.statusCode < 600;
         },
       })

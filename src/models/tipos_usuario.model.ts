@@ -15,14 +15,14 @@ export class TiposUsuario extends Model {
     autoIncrement: true,
     allowNull: true,
   })
-  id_tipos_usuario: number;
+  private declare id_tipos_usuario: number;
 
   @Column({ allowNull: false })
-  tipo_usuario: string;
+  private declare tipo_usuario: string;
 
   @Column({ allowNull: true })
-  descripcion_tipo_usuario: string;
+  private declare descripcion_tipo_usuario: string;
 
   @Column({ allowNull: false })
-  active?: number;
+  private declare active?: number;
 }

@@ -22,21 +22,21 @@ export class Salon extends Model {
     autoIncrement: true,
     allowNull: true,
   })
-  id_salon?: number;
+  private declare id_salon?: number;
 
   @Column({ allowNull: false })
-  nombre_salon: string;
+  private declare nombre_salon: string;
 
   @Column({ allowNull: false })
-  descripcion_salon?: string;
+  private declare descripcion_salon?: string;
 
   @ForeignKey(() => SalonEstatus)
   @Column({ allowNull: false })
-  id_salon_estatus?: number;
+  private declare id_salon_estatus?: number;
 
   @BelongsTo(() => SalonEstatus)
-  salon_estatus?: SalonEstatus;
+  private declare salon_estatus?: SalonEstatus;
 
   @Column({ allowNull: false })
-  private active: number;
+  private declare active: number;
 }
