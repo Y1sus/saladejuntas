@@ -15,32 +15,32 @@ export class DetallesUsuario extends Model {
     primaryKey: true,
     allowNull: true,
   })
-  id_detalles_usuario?: number;
+  private declare id_detalles_usuario?: number;
 
   @Column({ allowNull: false })
-  nombre: string;
+  private declare nombre: string;
 
   @Column({ allowNull: false })
-  apellidos: string;
+  private declare apellidos: string;
 
   @Column({ allowNull: false })
-  domicilio: string;
+  private declare domicilio: string;
 
   @Column({ allowNull: false })
-  telefono: string;
+  private declare telefono: string;
 
   @Column({ allowNull: false })
-  edad?: number;
+  private declare edad?: number;
 
   @Column({ allowNull: false })
-  created_at?: Date;
+  private declare created_at?: Date;
 
   @Column({ allowNull: false })
-  updated_at?: Date;
+  private declare updated_at?: Date;
 
   @Column({ allowNull: false })
-  deleted_at?: Date;
+  private declare deleted_at?: Date;
 
   @Column({ allowNull: false })
-  active?: number;
+  private declare active?: number;
 }

@@ -15,11 +15,11 @@ export class SalonEstatus extends Model {
     autoIncrement: true,
     allowNull: true,
   })
-  id_salon_estatus?: number;
+  private declare id_salon_estatus?: number;
 
   @Column({ allowNull: false })
-  nombre_estatus: string;
+  private declare nombre_estatus: string;
 
   @Column({ allowNull: false })
-  active?: number;
+  private declare active?: number;
 }

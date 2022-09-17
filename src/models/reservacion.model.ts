@@ -30,21 +30,21 @@ export class Reservacion extends Model {
   id_usuario?: number;
 
   @BelongsTo(() => Usuario)
-  usuario?: Usuario;
+  private declare usuario?: Usuario;
 
   @ForeignKey(() => Salon)
   @Column({ allowNull: false })
   id_salon?: number;
 
   @BelongsTo(() => Salon)
-  salon?: Salon;
+  private declare salon?: Salon;
 
   @Column({ allowNull: false })
-  hora_inicial?: string;
+  private declare hora_inicial?: string;
 
   @Column({ allowNull: false })
-  hora_final?: string;
+  private declare hora_final?: string;
 
   @Column({ allowNull: false })
-  active?: number;
+  private declare active?: number;
 }

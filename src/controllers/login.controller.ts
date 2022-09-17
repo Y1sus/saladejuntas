@@ -55,7 +55,7 @@ export class Login {
     const token = jwt.sign({ usuario }, "8n&K9bHr3n7vWyBki5", {
       expiresIn: "5h",
     });
-    console.log(usuario);
+    // console.log(usuario);
     return res.status(200).json({ data: usuario, token });
   }
 }
