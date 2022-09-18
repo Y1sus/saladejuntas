@@ -14,9 +14,11 @@ const usuarioRepo = sequelize.getRepository(Usuario);
 
 export class ReservacionController {
   async obtenerReservaciones(req: Request, res: Response) {
+    const { id_usuario } = req.body;
     const reservacion = await reservacionRepo.findAll({
       where: {
         active: 1,
+        id_usuario: id_usuario,
       },
       attributes: ["id_reservacion", "hora_inicial", "hora_final", "active"],
       include: [
@@ -92,7 +94,6 @@ export class ReservacionController {
   }
 
   async crearReservacion(req: Request, res: Response) {
-    console.log(req.body);
     const { id_usuario, id_salon, hora_inicial, hora_final } = req.body;
     const salon = await salonRepo.findOne({
       where: {
