@@ -2,14 +2,11 @@ const uri = process.env.NODE_ENV?.match("test")
   ? "mongodb://localhost/saladejuntas_test"
   : "mongodb://" +
     (process.env.NODE_ENV === "production"
-      ? process.env.MONGO_DB_HOST == undefined
-        ? "localhost"
-        : process.env.MONGO_DB_HOST
-      : process.env.MONGO_DB_HOST == undefined
-      ? "localhost"
-      : process.env.MONGO_DB_HOST) +
+      ? process.env.MONGO_DB_HOST
+      : process.env.NODE_ENV === "development"
+      ? "127.0.0.1"
+      : "127.0.0.1") +
     ":27017/saladejuntas";
-
 export const config = {
   DBConfig: {
     dbhost: process.env.MYSQL_DB_HOST || "localhost",

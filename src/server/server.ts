@@ -5,6 +5,7 @@ import { Http2Server } from "http2";
 
 import usuariosRoute from "../routes/usuarios.route";
 import loginRoute from "../routes/login.route";
+import registroRoute from "../routes/registro.route";
 import salonRoute from "../routes/salon.route";
 import reservacionRoute from "../routes/reservacion.route";
 import { validateToken } from "../config/validateToken";
@@ -63,6 +64,7 @@ export default class Server {
     this.app.use("/api/login", loginRoute);
     this.app.use("/api/salon", validateToken, salonRoute);
     this.app.use("/api/reservacion", validateToken, reservacionRoute);
+    this.app.use("/api/registro", registroRoute);
 
     // this.app.use('/empresas', validateToken, routeEmpresa);
     // this.app.use('/mesas', validateToken, routeMesa);

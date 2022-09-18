@@ -15,7 +15,7 @@ export class DetallesUsuario extends Model {
     primaryKey: true,
     allowNull: true,
   })
-  private declare id_detalles_usuario?: number;
+  declare id_detalles_usuario?: number;
 
   @Column({ allowNull: false })
   private declare nombre: string;
@@ -35,12 +35,12 @@ export class DetallesUsuario extends Model {
   @Column({ allowNull: false })
   private declare created_at?: Date;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   private declare updated_at?: Date;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   private declare deleted_at?: Date;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   private declare active?: number;
 }

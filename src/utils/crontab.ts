@@ -38,12 +38,12 @@ export class NodeCron {
     ids_reservacion: Array<number | undefined>,
     ids_salones: Array<number | undefined>
   ) {
-    console.log(
-      "ids_salones => ",
-      ids_salones,
-      " ids_reservaciones => ",
-      ids_reservacion
-    );
+    // console.log(
+    //   "ids_salones => ",
+    //   ids_salones,
+    //   " ids_reservaciones => ",
+    //   ids_reservacion
+    // );
     await this.reservacionRepo
       .update(
         {
@@ -77,7 +77,7 @@ export class NodeCron {
             console.log("Ocurrió un error al actualizar los salones => ", err);
           });
 
-        console.log(`Reservaciones terminadas`);
+        // console.log(`Reservaciones terminadas`);
       })
       .catch((err) => {
         console.log(`No se pudieron cancelar las reservaciones => ${err}`);
