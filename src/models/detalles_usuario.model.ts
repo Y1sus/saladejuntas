@@ -1,5 +1,18 @@
 import { Table, Column, Model } from "sequelize-typescript";
 
+/** 
+ * @class DetallesUsuario
+ * @extends Model
+ * @description Modelo de la tabla detalles_usuario
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ */
+// la clase DetallesUsuario es la encargada de crear la tabla detalles_usuario en la base de datos de mysql
+// esta clase hereda de la clase Model de la librería sequelize-typescript.
 @Table({
   timestamps: true,
   underscored: true,
@@ -15,32 +28,32 @@ export class DetallesUsuario extends Model {
     primaryKey: true,
     allowNull: true,
   })
-  id_detalles_usuario?: number;
+  declare id_detalles_usuario?: number;
 
   @Column({ allowNull: false })
-  nombre?: string;
+  private declare nombre: string;
 
   @Column({ allowNull: false })
-  apellidos?: string;
+  private declare apellidos: string;
 
   @Column({ allowNull: false })
-  domicilio?: string;
+  private declare domicilio: string;
 
   @Column({ allowNull: false })
-  telefono?: string;
+  private declare telefono: string;
 
   @Column({ allowNull: false })
-  edad?: number;
+  private declare edad?: number;
 
   @Column({ allowNull: false })
-  created_at?: Date;
+  private declare created_at?: Date;
 
-  @Column({ allowNull: false })
-  updated_at?: Date;
+  @Column({ allowNull: true })
+  private declare updated_at?: Date;
 
-  @Column({ allowNull: false })
-  deleted_at?: Date;
+  @Column({ allowNull: true })
+  private declare deleted_at?: Date;
 
-  @Column({ allowNull: false })
-  active?: number;
+  @Column({ allowNull: true })
+  private declare active?: number;
 }

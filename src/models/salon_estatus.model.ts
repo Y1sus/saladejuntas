@@ -11,30 +11,25 @@ import { Model, Column, Table } from "sequelize-typescript";
  * @license Owner
  * @language typescript
  * */
-
-// Clase que representa la tabla tipo de usuario en la base de datos
 @Table({
-  tableName: "tipos_usuario",
-  underscored: true,
+  tableName: "salon_estatus",
   timestamps: true,
-  createdAt: false,
+  underscored: true,
+  createdAt: "created_at",
   updatedAt: false,
   deletedAt: false,
 })
-export class TiposUsuario extends Model {
+export class SalonEstatus extends Model {
   @Column({
-    field: "id_tipos_usuario",
+    field: "id_salon_estatus",
     primaryKey: true,
     autoIncrement: true,
     allowNull: true,
   })
-  private declare id_tipos_usuario: number;
+  private declare id_salon_estatus?: number;
 
   @Column({ allowNull: false })
-  private declare tipo_usuario: string;
-
-  @Column({ allowNull: true })
-  private declare descripcion_tipo_usuario: string;
+  private declare nombre_estatus: string;
 
   @Column({ allowNull: false })
   private declare active?: number;

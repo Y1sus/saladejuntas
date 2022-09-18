@@ -1,0 +1,75 @@
+# Con este archivo configuramos el servidor para un entorno de producción usando docker-compose.
+version: "3.3"
+# declaramos los servicios que vamos a usar
+# que para este caso cuatro, el servidor de la api, la base de datos de mysql, la base de datos de mongo y un administrador de base de datos para mongo (mongo-express)
+# Asignamos un nombre a cada servicio y le indicamos la imagen que vamos a usar
+services:
+  saladejuntas-database:
+    container_name: saladejuntas-database
+    image: "mysql:8.0"
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - .env
+    volumes:
+      - "./dbdata/mysql_data:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${PORT_DB}:3306"
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - ${MONGO_PORT}:27017
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      # seeding scripts
+      - ./dbdata//mongo/mongo-entrypoint:/docker-entrypoint-initdb.d
+      # named volumes
+      - ./dbdata/mongo/mongodb:/data/db
+      - ./dbdata/mongo/mongoconfig:/data/configdb
+
+  saladejuntas-mongo-express:
+    container_name: saladejuntas-mongo-express
+    image: mongo-express
+    restart: always
+    ports:
+      - ${MONGO_EXPRESS_PORT}:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+    depends_on:
+      - mongodb
+    volumes:
+      - "./dbdata/mongo/mongodb:/data/db"
+  saladejuntas-app:
+    container_name: saladejuntas-api
+    image: "node"
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - "./:/home/app-node"
+    depends_on:
+      - saladejuntas-database
+      - mongodb
+    ports:
+      - ${PORT}:4000
+    environment:
+      - MONGO_DB_HOST:${MONGO_DB_HOST}
+      - MYSQL_DB_HOST:${MYSQL_DB_HOST}
