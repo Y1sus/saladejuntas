@@ -1,5 +1,16 @@
 import { Model, Column, Table } from "sequelize-typescript";
 
+/**
+ * @class SalonEstatus
+ * @extends Model
+ * @description Modelo de la tabla salon_estatus
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ * */
 @Table({
   tableName: "salon_estatus",
   timestamps: true,

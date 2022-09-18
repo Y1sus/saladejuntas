@@ -1,5 +1,18 @@
 import { Model, Column, Table } from "sequelize-typescript";
 
+/**
+ * @class SalonEstatus
+ * @extends Model
+ * @description Modelo de la tabla salon_estatus
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ * */
+
+// Clase que representa la tabla tipo de usuario en la base de datos
 @Table({
   tableName: "tipos_usuario",
   underscored: true,

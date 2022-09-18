@@ -1,4 +1,8 @@
+# Con este archivo configuramos el servidor para un entorno de producción usando docker-compose.
 version: "3.3"
+# declaramos los servicios que vamos a usar
+# que para este caso cuatro, el servidor de la api, la base de datos de mysql, la base de datos de mongo y un administrador de base de datos para mongo (mongo-express)
+# Asignamos un nombre a cada servicio y le indicamos la imagen que vamos a usar
 services:
   saladejuntas-database:
     container_name: saladejuntas-database
@@ -16,7 +20,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "${PORT_DB}:3306"
-  
+
   mongodb:
     image: mongo:latest
     container_name: mongodb

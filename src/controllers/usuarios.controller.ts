@@ -4,9 +4,11 @@ import { sequelize } from "../database/database";
 import { TiposUsuario } from "../models/tipos_usuario.model";
 import { Usuario } from "../models/usuario.model";
 
+// creamos las variables que contienen los repositorios de las tablas de la base de datos
 const usuarioRepo = sequelize.getRepository(Usuario);
 const tipoUsuarioRepo = sequelize.getRepository(TiposUsuario);
 export class UsuarioController {
+  // con esta función obtenemos todos los usuario que están en la base de datos
   async obtenerUsuarios(req: Request, res: Response): Promise<Response> {
     const usuarios = await usuarioRepo.findAll({
       where: {
@@ -29,6 +31,7 @@ export class UsuarioController {
     });
   }
 
+  // con esta función obtenemos un usuario por su id
   async obtenerUsuarioPorId(req: Request, res: Response): Promise<Response> {
     const { id_usuario } = req.params;
     const usuario = await usuarioRepo.findOne({
@@ -48,6 +51,7 @@ export class UsuarioController {
     return res.status(200).json({ msj: " No se encuentra el usuario" });
   }
 
+  // esta función permite crear un usuario
   async crearUsuario(req: Request, res: Response): Promise<Response> {
     const { email, password, id_detalles_usuario, id_tipo_usuario } = req.body;
     const hashPass = crypto.createHash("sha256").update(password).digest("hex");

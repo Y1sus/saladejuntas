@@ -7,6 +7,19 @@ import {
 } from "sequelize-typescript";
 import { SalonEstatus } from "./salon_estatus.model";
 
+/**
+ * @class Salon
+ * @extends Model
+ * @description Modelo de la tabla salon
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ * */
+
+// Clase que representa la tabla salon en la base de datos
 @Table({
   tableName: "salon",
   underscored: true,

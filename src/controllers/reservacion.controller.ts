@@ -6,6 +6,7 @@ import { DetallesUsuario } from "../models/detalles_usuario.model";
 import { SalonEstatus } from "../models/salon_estatus.model";
 import { Request, Response } from "express";
 
+// creamos las variables que contienen los repositorios de las tablas de la base de datos
 const detallesUsuarioRepo = sequelize.getRepository(DetallesUsuario);
 const reservacionRepo = sequelize.getRepository(Reservacion);
 const salonRepo = sequelize.getRepository(Salon);
@@ -13,6 +14,8 @@ const estatusRepo = sequelize.getRepository(SalonEstatus);
 const usuarioRepo = sequelize.getRepository(Usuario);
 
 export class ReservacionController {
+  // con esta función obtenemos todas las reservaciones para
+  //  el usuario específico que está logueado actualmente
   async obtenerReservaciones(req: Request, res: Response) {
     const { id_usuario } = req.body;
     const reservacion = await reservacionRepo.findAll({
@@ -56,6 +59,7 @@ export class ReservacionController {
     else return res.status(204).json({ msj: "No hay reservaciones" });
   }
 
+  // obtenemos la reservación por id
   async obtenerReservacionPorId(req: Request, res: Response) {
     const { id_reservacion } = req.params;
     const reservacion = await reservacionRepo.findOne({
@@ -93,8 +97,10 @@ export class ReservacionController {
     else return res.status(200).json({ data: reservacion });
   }
 
+  // con esta función creamos la reservación
   async crearReservacion(req: Request, res: Response) {
     const { id_usuario, id_salon, hora_inicial, hora_final } = req.body;
+    // primero validamos que el salón no esté ocupado en ese horario
     const salon = await salonRepo.findOne({
       where: {
         id_salon,
@@ -102,6 +108,8 @@ export class ReservacionController {
       },
     });
     if (salon) {
+      // si el salón está disponible, entonces creamos la reservación
+      // con los datos que nos llegan en el body
       await reservacionRepo
         .create({
           id_usuario,
@@ -111,6 +119,7 @@ export class ReservacionController {
           active: 1,
         })
         .then(async (reservacionCreada) => {
+          // una vez que se crea la reservación, cambiamos el estatus del salón a ocupado
           await salonRepo.update(
             {
               id_salon_estatus: 2,
@@ -134,8 +143,10 @@ export class ReservacionController {
     }
   }
 
+  // con esta función actualizamos la reservación por id a terminada o cancelada
   async terminarReservacion(req: Request, res: Response) {
     const { id_reservacion } = req.params;
+    // buscamos la reservación por id y que esté activa
     const reservacion = await reservacionRepo.findOne({
       where: {
         id_reservacion,
@@ -155,6 +166,7 @@ export class ReservacionController {
           }
         )
         .then(async () => {
+          // una vez que se termina la reservación, cambiamos el estatus del salón a disponible
           const id_salon = reservacion.getDataValue("id_salon");
           await salonRepo
             .update(
