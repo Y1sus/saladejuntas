@@ -8,6 +8,17 @@ import {
 import { Salon } from "./salon.model";
 import { Usuario } from "./usuario.model";
 
+/**
+ * @class Reservacion
+ * @extends Model
+ * @description Modelo de la tabla reservacion
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ * */
 @Table({
   tableName: "reservacion",
   underscored: true,

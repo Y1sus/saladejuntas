@@ -8,6 +8,19 @@ import {
 import { DetallesUsuario } from "./detalles_usuario.model";
 import { TiposUsuario } from "./tipos_usuario.model";
 
+/**
+ * @class Usuario
+ * @extends Model
+ * @description Modelo de la tabla usuario
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ * */
+
+// Clase que representa la tabla usuario en la base de datos
 @Table({
   timestamps: true,
   underscored: true,

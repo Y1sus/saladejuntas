@@ -1,5 +1,18 @@
 import { Table, Column, Model } from "sequelize-typescript";
 
+/** 
+ * @class DetallesUsuario
+ * @extends Model
+ * @description Modelo de la tabla detalles_usuario
+ * @developer Jes´ús Montalvo
+ * @version 1.0.0
+ * @since 1.0.0
+ * @date 2022-09-17
+ * @license Owner
+ * @language typescript
+ */
+// la clase DetallesUsuario es la encargada de crear la tabla detalles_usuario en la base de datos de mysql
+// esta clase hereda de la clase Model de la librería sequelize-typescript.
 @Table({
   timestamps: true,
   underscored: true,
