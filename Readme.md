@@ -61,9 +61,9 @@ Si la información es correcta, se obtiene el token de autenticación, el cual s
 
 <div align="center">
 
-<img src="https://user-images.githubusercontent.com/8833858/190925052-1b839cb7-45f6-483b-a509-7fef0287bb14.png"  align="left" width="500px" height="300px" />
+<img src="https://user-images.githubusercontent.com/8833858/190925052-1b839cb7-45f6-483b-a509-7fef0287bb14.png" width="500px" height="300px" />
 
-<img src="https://user-images.githubusercontent.com/8833858/190925099-c61dfebb-30b5-45cf-aa84-1bf794917571.png" align="right" width="500px" height="300px"/>
+<img src="https://user-images.githubusercontent.com/8833858/190925099-c61dfebb-30b5-45cf-aa84-1bf794917571.png" width="500px" height="300px"/>
 
 <img src="https://user-images.githubusercontent.com/8833858/190925345-9bdf39c7-e4cf-4703-aaee-eea9a8b349a3.png" width="500px" height="300px" style="margin-top:15px"/>
 </div>
